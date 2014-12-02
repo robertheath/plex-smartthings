@@ -1,0 +1,15 @@
+[
+	{
+		"id": "smUser",
+		"label": "SmartThings Username",
+		"type": "text",
+		"default": "" 
+	},
+	{
+		"id": "smPass",
+		"label": "SmartThings Password",
+		"type": "text",
+		"option": "hidden",
+		"default": "" 
+	}
+]
