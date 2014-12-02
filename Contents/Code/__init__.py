@@ -69,12 +69,22 @@ def ProcessRequest(key):
 		if (t['name'] == "temperature" or t['name'] == "battery" or t['name'] == "humidity" or t['name'] == "water"):
 		    icon = Resource.ContentsOfURLWithFallback("http://dummyimage.com/512X512/fff/000.png&text="+t['value'])
 		    label = t['name'].title()
-		else:
+		    device_summary = t['name'].title()+" is "+t['value'].title()
+	        elif (t['name'] == "contact"):
+		    icon = R("contact-"+t['value']+".png")
+		    label = device['label'].title()
+                    device_summary = device['label'].title()+" is "+t['value'].title()
+                else:
 		    icon = R(image+"-"+t['value']+".png")
-		    label = device['label']
-		oc.add(DirectoryObject(key = device['id'], title = label, summary = t['name']+" is "+t['value'], thumb = icon))
-#	    for u in t:
-#                Log(u)
-#                Log(t[u])
+		    label = device['label'].title()
+		    device_summary = device['label'].title()+" is "+t['value'].title()
+		Log(label)
+		Log(icon)
+		oc.add(DirectoryObject(key = device['id'], title = label, summary = device_summary, thumb = icon))
+          
+	        if (label == "Garage Door (overhead)"):
+                     for u in t:
+                         Log(u)
+                         Log(t[u])
 
     return oc
